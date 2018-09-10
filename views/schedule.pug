@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    div.container
+        h2 Below are the schedule of your services
+        p Happy serving! God bless you!
+
+        h1 Officer
+        ul
+            each val in user_role
+                li 
+                    p #{val.name}
+            else
+              li There are no Service.

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div.container
+    h1= title
+    h3 Hi #{username}! We are excited to have you as a part of our team!
+    p Please indicate the services that you would like to participate in by filling the form below
+
+    ul
+      each user in user_list
+        li 
+          p #{user.name}
+
+      else
+        li There are no users.
+
+

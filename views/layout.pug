@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon', type='image/x-icon' href="/images/favicon.ico")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css")
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    nav.navbar.navbar-expand-lg.navbar-light
+      a.navbar-brand
+        img(src='/images/Logo.jpg' width='75px' height='75px')
+      button(data-toggle='collapse', data-target='#navbarNav').navbar-toggler
+        span.navbar-toggler-icon
+      div.collapse.navbar-collapse#navbarNav
+        ul.navbar-nav
+          if authenticated
+            li.nav-item
+              a(href='/').nav-link Home
+            li.nav-item
+              a(href='/about').nav-link About Us
+            li.nav-item 
+              a(href='/users').nav-link Join Us!
+            li.nav-item 
+              a(href='/schedule').nav-link Schedule
+            li.nav-item.loginNav
+              a.nav-link Logged in as #{username}
+              div.logout
+                a(href='/users/logout') Logout
+          else
+            li.nav-item 
+              a(href='/').nav-link Home
+            li.nav-item
+              a(href='/about').nav-link About Us
+            li.nav-item 
+              a(href='/users').nav-link Join Us!
+            li.nav-item
+              a(href='/users/login').nav-link Login
+
+    block content
+  
+footer
+  div.footer-block.text-center
+    div.contact
+      a(href='https://www.instagram.com/indofellowship', target='_blank')
+        i.fab.fa-instagram
+      a(href='https://www.facebook.com/indo.fellow', target='_blank')
+        i.fab.fa-facebook
+      a(href='mailto:indofellowship@gmail.com')
+        i.fas.fa-envelope
+    div.text-center &copy; 2018. Indonesian Fellowship. All rights reserved.

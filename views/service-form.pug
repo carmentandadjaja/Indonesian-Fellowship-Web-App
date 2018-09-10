@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.container
+    h1= title
+    h3 Hi #{username}! We are excited to have you as a part of our team!
+    p Please indicate the services that you would like to participate in by filling the form below
+
+    form(method='POST' action='')
+      div.form-group
+        label(for='officer') Officer
+        input#officer.form-control(type='checkbox', name='service', value='Officer')
+        label(for='sharing') Sharing
+        input#sharing.form-control(type='checkbox', name='service', value='Sharing')
+        label(for='testimony') Testimony
+        input#testimony.form-control(type='checkbox', name='service', value='Testimony')
+        label(for='wl') Worship Leader
+        input#wl.form-control(type='checkbox', name='service', value='Worship Leader')
+        label(for='pianist') Pianist
+        input#pianist.form-control(type='checkbox', name='service', value='Pianist')
+        label(for='guitarist') Guitarist
+        input#guitarist.form-control(type='checkbox', name='service', value='Guitarist')
+        label(for='violinist') Violinist
+        input#violinist.form-control(type='checkbox', name='service', value='Violinist')
+        label(for='lcd') LCD Operator
+        input#lcd.form-control(type='checkbox', name='service', value='LCD Operator')
+        label(for='flute') Flute
+        input#flute.form-control(type='checkbox', name='service', value='Flute')
+      div.text-center
+        button.btn.btn-primary(type='submit') Submit

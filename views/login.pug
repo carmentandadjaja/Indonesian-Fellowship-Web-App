@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-md-6.offset-md-3.login-box
+        form(method='POST' action='')
+          div.text-center
+            img(src='/images/Logo.jpg' width='150px' height='150px')
+          div.form-group
+            label(for='name') Username:
+            input#name.form-control(type='text', name='name', required)
+            label(for='pass') Password:
+            input#pass.form-control(type='password', name='pass', required)
+          div.text-center
+            button.btn.btn-primary(type='submit') Login
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
