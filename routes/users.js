@@ -71,14 +71,28 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function (req, res, next) {
-  var user = new User(
-    { name: req.body.name, password: req.body.pass }
-  )
+  var query = User.findOne({ name: req.body.name, password: req.body.pass });
+  query.exec(function (err, user) {
+    if (err) { return next(err); }
+    if (user) {
+      req.session.authenticated = true;
+      req.session.username = user.name;
+      res.redirect('/');
+    }
+    else {
+      var user = new User(
+        { name: req.body.name, password: req.body.pass }
+      )
+      user.save(function (err, user) {
+        if (err) return console.log(err);
+        res.redirect('/users/login')
+      })
+      //res.redirect('/users/login');
+    }
 
-  user.save(function (err, user) {
-    if (err) return console.log(err);
-    res.redirect('/users/login')
   })
+
+
 
   // User.find().exec(function (err, list_users) {
   //   if (err) { return next(err); }
