@@ -1,6 +1,13 @@
 extends layout
 
+
 block content
+
+  script.
+    function test()
+    {
+      console.log("test");
+    }
   div.container
     h1= title
     h3 Hi #{username}! We are excited to have you as a part of our team!
@@ -8,23 +15,29 @@ block content
 
     form(method='POST' action='')
       div.form-group
-        label(for='officer') Officer
-        input#officer.form-control(type='checkbox', name='service', value='Officer')
-        label(for='sharing') Sharing
-        input#sharing.form-control(type='checkbox', name='service', value='Sharing')
-        label(for='testimony') Testimony
-        input#testimony.form-control(type='checkbox', name='service', value='Testimony')
-        label(for='wl') Worship Leader
-        input#wl.form-control(type='checkbox', name='service', value='Worship Leader')
-        label(for='pianist') Pianist
-        input#pianist.form-control(type='checkbox', name='service', value='Pianist')
-        label(for='guitarist') Guitarist
-        input#guitarist.form-control(type='checkbox', name='service', value='Guitarist')
-        label(for='violinist') Violinist
-        input#violinist.form-control(type='checkbox', name='service', value='Violinist')
-        label(for='lcd') LCD Operator
-        input#lcd.form-control(type='checkbox', name='service', value='LCD Operator')
-        label(for='flute') Flute
-        input#flute.form-control(type='checkbox', name='service', value='Flute')
+        each val, index in service_list
+          - var service = val.name
+          - var i = 0; 
+          div.checkbox-group
+            input.service-checkbox.form-control(type='checkbox', name='service', value=service, id="service" + index)
+            label.service-label(for="service"+index) #{val.name}
       div.text-center
         button.btn.btn-primary(type='submit') Submit
+
+
+    //- if chosen_services.service.length == 0
+    //-   h2 You are currently not signed up for any services
+    //- else
+    //-   h2 You are currently signed up for the following services
+    //-       ul
+    //-         each chosen in chosen_services.service
+    //-           li 
+    //-             p #{chosen.name}
+
+    //- ul
+    //-   each val in user.service
+    //-     li #{val.name}
+
+
+
+  

@@ -2,12 +2,84 @@ a:hover {
   text-decoration: none;
 }
 
+.nav-link{
+  padding-bottom: 10px;
+}
+
+.nav-link-effect{
+  width: 0px;
+  color: black;
+  visibility: hidden;
+  border: 2px solid black;
+  transition: width 0.5s;
+}
+
+.nav-item:hover > .nav-link-effect{
+  width: 100%;
+  color: black;
+  visibility: visible;
+  border: 2px solid black;
+  transition: width 0.5s all ease;
+}
+
 footer a{
   color: white;
 }
 
+.landing-text{
+  color: beige;
+  padding: 20px;
+  position: relative;
+  top: 30px;
+}
+
 .container{
   min-height: 77.3vh;
+}
+
+.card{
+  min-height: 200px;
+  margin: 10px 40px;
+}
+
+.service-checkbox{
+  display: none;
+}
+
+.service-label{
+  width: 150px;
+  text-align: center;
+  background: white;
+  color: black;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid black
+}
+
+.service-label:hover{
+  cursor: pointer;
+}
+
+.checkbox-group{
+  display: inline;
+}
+
+#service0:checked~label,
+#service1:checked~label,
+#service2:checked~label,
+#service3:checked~label,
+#service4:checked~label,
+#service5:checked~label,
+#service6:checked~label,
+#service7:checked~label,
+#service8:checked~label{
+  background: black;
+  color: white;
+}
+
+ul {
+  margin: 0;
+  padding: 5px;
 }
 
 .login-box{

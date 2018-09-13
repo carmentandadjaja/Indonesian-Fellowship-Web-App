@@ -6,7 +6,31 @@ var async = require('async')
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
-  res.render('service-form', { username: req.session.username, authenticated: req.session.authenticated })
+  async.parallel({
+    services: function (callback) {
+      Service.find().exec(callback);
+    },
+    user_services: function (callback) {
+      User.findOne({ name: req.session.username }).populate('service').exec(callback)
+    }
+  },
+    function (err, result) {
+      if (err) { return next(err) }
+      res.render('service-form', {
+        title: 'Service',
+        username: req.session.username, authenticated: req.session.authenticated,
+        service_list: result.services,
+        chosen_services: result.user_services
+      })
+    }
+  )
+  // Service.find().exec(callback);
+  // User.findOne({ name: req.session.username }).populate('service')
+  //   .exec(function (err, result) {
+  //     if (err) return next(err)
+  //     res.render('service-form', { username: req.session.username, authenticated: req.session.authenticated, user: result })
+  //   })
+
   // console.log(req.body.officer.checked);
   // User.find().exec(function (err, list_users) {
   //   if (err) { return next(err); }
@@ -39,25 +63,33 @@ router.post('/login', function (req, res, next) {
 
   })
 
-  // var user = new User(
-  //   { name: req.body.name, password: req.body.pass }
-  // )
 
-  // user.save(function (err, user) {
-  //   if (err) return console.log(err);
-  //   res.redirect('/users')
-  // })
+});
+
+router.get('/register', function (req, res, next) {
+  res.render('register');
+})
+
+router.post('/register', function (req, res, next) {
+  var user = new User(
+    { name: req.body.name, password: req.body.pass }
+  )
+
+  user.save(function (err, user) {
+    if (err) return console.log(err);
+    res.redirect('/users/login')
+  })
 
   // User.find().exec(function (err, list_users) {
   //   if (err) { return next(err); }
   //   res.render('index', { title: 'Users', user_list: list_users });
   // });
-});
+})
 
 router.post('/', function (req, res, next) {
 
   var serviceArr = [];
-  var chosenService = [];
+  var serviceList = [];
   var officer;
   var sharing;
   var testimony;
@@ -68,15 +100,20 @@ router.post('/', function (req, res, next) {
   var lcd;
   var flute;
 
-  console.log(serviceArr);
+  serviceArr = req.body.service;
 
   if (serviceArr) {
-    if (req.body.service) {
-      updateUser(serviceArr);
+    // Push value manually to another array so that the string will not be treated as an array
+    if (typeof serviceArr === 'string') {
+      console.log('test')
+      serviceList = [serviceArr];
+      updateUser(serviceList);
     }
+    else
+      updateUser(serviceArr);
   }
   else
-    res.redirect('/users');
+    res.redirect('/');
 
   function updateUser(chosenService) {
     async.parallel([
@@ -124,7 +161,6 @@ router.post('/', function (req, res, next) {
         cb(err, null)
         return;
       }
-      // serviceArr.push(service)
       cb(null, service);
     })
   }

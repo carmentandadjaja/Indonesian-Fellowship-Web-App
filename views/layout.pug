@@ -14,20 +14,24 @@ html
   body
     nav.navbar.navbar-expand-lg.navbar-light
       a.navbar-brand
-        img(src='/images/Logo.jpg' width='75px' height='75px')
+        img(src='/images/Logo.jpg' width='70px' height='70px')
       button(data-toggle='collapse', data-target='#navbarNav').navbar-toggler
         span.navbar-toggler-icon
       div.collapse.navbar-collapse#navbarNav
         ul.navbar-nav
           if authenticated
             li.nav-item
-              a(href='/').nav-link Home
+              a(href='/', id='home').nav-link Home
+              div.nav-link-effect
             li.nav-item
               a(href='/about').nav-link About Us
+              div.nav-link-effect
             li.nav-item 
-              a(href='/users').nav-link Join Us!
+              a(href='/users').nav-link Services
+              div.nav-link-effect
             li.nav-item 
               a(href='/schedule').nav-link Schedule
+              div.nav-link-effect
             li.nav-item.loginNav
               a.nav-link Logged in as #{username}
               div.logout
@@ -35,12 +39,16 @@ html
           else
             li.nav-item 
               a(href='/').nav-link Home
+              div.nav-link-effect
             li.nav-item
               a(href='/about').nav-link About Us
+              div.nav-link-effect
             li.nav-item 
-              a(href='/users').nav-link Join Us!
+              a(href='/users/register').nav-link Join Us!
+              div.nav-link-effect
             li.nav-item
               a(href='/users/login').nav-link Login
+              div.nav-link-effect
 
     block content
   

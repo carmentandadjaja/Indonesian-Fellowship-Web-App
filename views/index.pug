@@ -1,6 +1,21 @@
 extends layout
 
+
 block content
-  div.landing
+  style(type='text/css').
+    #home ~ .nav-link-effect{
+      display: block;
+      margin: auto;
+      width: 75%;
+      color: black;
+      visibility: visible;
+      border: 2px solid black;
+    }
+  div.landing.text-center
+    div.landing-text
+      if authenticated
+        h1 Welcome #{username}, we're glad you're here
+      else
+        h1 Welcome, we're glad you're here
 
   

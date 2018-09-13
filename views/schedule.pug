@@ -2,13 +2,67 @@ extends layout
 
 block content
     div.container
-        h2 Below are the schedule of your services
+        h2 Below are the list of all available services and their current members.
         p Happy serving! God bless you!
 
-        h1 Officer
-        ul
-            each val in user_role
-                li 
-                    p #{val.name}
-            else
-              li There are no Service.
+        div.row
+            each val in serviceList
+                div.card.col-md-3
+                    div.card-body
+                        h5.card-title #{val.name}
+                        p.card-text
+                        case val.name
+                            when 'Officer'
+                                ul
+                                    each val in officer
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Sharing'
+                                ul
+                                    each val in sharing
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Testimony'
+                                ul
+                                    each val in testimony
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Worship Leader'
+                                ul
+                                    each val in wl
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Pianist'
+                                ul
+                                    each val in pianist
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Guitarist'
+                                ul
+                                    each val in guitarist
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Violinist'
+                                ul
+                                    each val in violinist
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'LCD Operator'
+                                ul
+                                    each val in lcd
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.
+                            when 'Flute'
+                                ul
+                                    each val in flute
+                                        li #{val.name}
+                                    else
+                                        p There are no members yet.

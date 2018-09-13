@@ -13,9 +13,10 @@ block content
             label(for='pass') Password:
             input#pass.form-control(type='password', name='pass', required)
           div.text-center
-            button.btn.btn-primary(type='submit') Login
-          div.signup.text-center
-            a(href='/users/register') Sign me up!
+            button.btn.btn-primary(type='submit') Sign me up!
+          div.text-center
+            span Have an account? Log in 
+            a(href='login') here.
 
   if errors 
     ul
